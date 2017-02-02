@@ -3,8 +3,10 @@
  * @date Feb 1, 2017
  * Agile processes use test cases as a specification mechanism. The purpose of this exercise is to help you understand the power of test cases as a specification mechanism.
  * Consider the specification for the set() method in the Java ArrayList class. https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html#add(E)
- * Assignment: Define test cases (both inputs and expected outputs) based on the documentation.
- * Grading criteria: A plausible set of test cases that exercise all aspects of the documentation. You don't have to format the tests as JUnit, but it would be good practice.
+ * Assignment: 
+ * 		Define test cases (both inputs and expected outputs) based on the documentation.
+ * 		Grading criteria: A plausible set of test cases that exercise all aspects of the documentation. 
+ * 		You don't have to format the tests as JUnit, but it would be good practice.
  */
 
 import java.util.ArrayList;
@@ -42,7 +44,7 @@ public class hw01_testArrayListSetMethod
 	}
 
 	/*  Test case 1 : set() is call when the list is not empty
-	 *  	input : index with values < 0
+	 *  	input : index with values < 0, randome element
 	 *  	expect outcome :  throw IndexOutofBound exception 	 */
 	@Theory
 	@Test  (expected = IndexOutOfBoundsException.class) 
@@ -52,7 +54,7 @@ public class hw01_testArrayListSetMethod
 		}
 	}
 	
-	/* Test case 2: set() with index = 0 when list is empty
+	/* Test case 2: test set() when list is empty
 	 *  	input : empty list, index = 0
 	 *  	expect outcome : throw IOB Exception	 	*/
 	@Theory
@@ -62,8 +64,8 @@ public class hw01_testArrayListSetMethod
 		list.set(0, 12345);						
 	}
 	
-	/* Test case 3: set() with index equal or greater than list's size()
-	 * 		input : element, index >= current list size				 
+	/* Test case 3: test set() with index equals or greater than list's size()
+	 * 		input : random element, index >= current list size				 
 	 *		expect outcome : throw IOB exception 		
 	 * */
 	@Theory
@@ -76,14 +78,15 @@ public class hw01_testArrayListSetMethod
 	}
 
 	
-	/* Test case 4: when Set() is called when the ArrayList is null 
-	 * 	 expect outcome:  throw NPE 
+	/* Test case 4: test set() when the ArrayList is null 
+	 * 		input:  array list
+	 * 	 	expect outcome:  throw NPE 
 	 * */
 	@Test (expected = NullPointerException.class)
 	public void testForNullList()
 	{
-		arrayList = null;
-		arrayList.set(1,3);
+		arrayList = null;			
+		arrayList.set(1,3);			
 	}
 	
 	/* Test case 5: when Set() is called when the ArrayList is null  */ 
@@ -99,9 +102,9 @@ public class hw01_testArrayListSetMethod
 	
 	
 	/* Test case 6: verify if the set() put the new element in correct position  
-	 * *  	input : new element, index
+	 * *  	input : newElement, index
 	 *  	expect: after set() is invoke, the element that is currently at position 
-	 *  			index must equals new element
+	 *  			<index> must equals new element
 	 * */ 
 	@Test
 	public void testForTheNewElementIsInsertedAtTheRightIndex()
@@ -122,7 +125,8 @@ public class hw01_testArrayListSetMethod
 	 * New element will replace the current element at given index. 
 	 *  	input : index, element current at the position index
 	 *  	output : replaced element
-	 *  	expect : after set, the element at position index must equals new element
+	 *  	expect : after set() is invoked, the return element must equals the element 
+	 *  			that previously at the position <index>
 	 *  */
 	@Test 
 	public void testForCorrectReturnedElement()
@@ -137,13 +141,15 @@ public class hw01_testArrayListSetMethod
 			index = rd.nextInt(arrayList.size());				// 0 <= index < arraysize
 			elementAtSpecifiedIndex = arrayList.get(index);		//get the current element at the position index 	
 			returnedElement = arrayList.set(index, newElement);
-			assertEquals(elementAtSpecifiedIndex,returnedElement);
+			assertEquals(elementAtSpecifiedIndex,returnedElement);		
 		}
 
 	}
 
-	// Test case 8:  if the newArray and the originalArray is the same in size and 
-	// the rest of other elements beside the element at the specified position.    
+	/* Test case 8:  test if set() does not affect values and order of other element
+			input : elements of original array,  index : position of the element to be replaced
+			expect : all other elements except the element at <index> position
+	*/
 	@Test 
 	public void testIfTheRestOfTheArrayIsUnchanged()
 	{
