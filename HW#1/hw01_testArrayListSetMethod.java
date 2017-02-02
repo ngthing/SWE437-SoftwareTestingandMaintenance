@@ -10,12 +10,14 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.theories.Theory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-public class hw01_ArrayListSetMethodTest 
+public class hw01_testArrayListSetMethod 
 {
 	private ArrayList<Integer> arrayList; 
 	 
@@ -59,7 +61,7 @@ public class hw01_ArrayListSetMethodTest
 	}
 	
 	/* test case : set() with index equal or greater than list's size()
-	 * 	input : element, index ( >= current list size
+	 * 	input : element, index ( >= current list size 
 	 */
 	@Theory
 	@Test(expected = IndexOutOfBoundsException.class) 
@@ -68,7 +70,7 @@ public class hw01_ArrayListSetMethodTest
 		for (int i=0; i<1000; i++) {
 			arrayList.set(Math.abs(rd.nextInt())+arrayList.size(), 1234);		
 		}
-		list.set(arrayList.size(), 12345);		//include this line because above loop may miss this circumstance
+		arrayList.set(arrayList.size(), 12345);		//include this line because above loop may miss this circumstance
 	}
 
 	@Test (expected = NullPointerException.class)
