@@ -9,6 +9,7 @@
 
 import java.util.ArrayList;
 import java.util.Random;
+
 import org.junit.Test;
 import org.junit.experimental.theories.Theory;
 import static org.junit.Assert.assertEquals;
@@ -25,11 +26,10 @@ public class hw01_testArrayListSetMethod {
 		return al;
 	}
 	
-	/*Test  if the replace is correct which :
+	/*Test the if the replace is correct which :
 	 * 1.  test if the new element is inserted in correct position
 	 * 2.  test if set() return values is the element that was previously in the replaced position
-	 * 3.  test to make sure total number of element is no change
-	 * 4.  test to make sure all elements before & after the set's position are no changed (in orders and values)
+	 * 3.  test to make sure all elements before & after the set's position are no changed (in orders and values)
 	*/
 	@Test 
 	public void testReplacement(){
@@ -39,7 +39,6 @@ public class hw01_testArrayListSetMethod {
 			replElem, 			//to hold element that will be replaced
 			retElem;			//to hold the return value from set() method
 		
-		int oldSize = list.size();
 		for (int i=0; i<1000; i++){				//test for 1000 replacements
 			newElem = rd.nextInt(30);			//bound 0<= elem <30
 			index = rd.nextInt(list.size());	// 0<= index < arraysize
@@ -50,9 +49,6 @@ public class hw01_testArrayListSetMethod {
 			
 			//test condition 2
 			assertEquals(retElem, replElem);		
-			
-			//test condition 3
-			assertEquals(oldSize, list.size() );				//make sure size is no change
 			
 			
 			//test for condition 4: make sure all elements before the index, and after the index are no changed
@@ -69,23 +65,34 @@ public class hw01_testArrayListSetMethod {
 		}
 	}
 	
-	@Test	
+	//break into 3 different tests cases
+	@Theory
+	@Test(expected = IndexOutOfBoundsException.class) 
 	public void testException_emptyList(){
-		Integer newElem = 123445;
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		try {
-			//case 1, set to index 0 when list is empty
-			list.set(0, newElem);						
-
-			//case 2, set to index equal size()
-			list = generateList();						
-			list.set(list.size(), 12345);				
-
-			//case 3: test with index > size() , 
-			for (int i=0; i<1000; i++) {
-				list.set(Math.abs(rd.nextInt())+list.size(), 1234);		
-			}
-		} catch (IndexOutOfBoundsException iob){
-			//good, IOB is throw at expected
-		}
+		//case 1, set to index 0 when list is empty
+		list.set(0, 12345);						
+	}
 	
+	@Theory
+	@Test(expected = IndexOutOfBoundsException.class) 
+	public void testException_setAtSize(){
+		ArrayList<Integer> list = generateList();
+		//case 2, set to index equal size()
+		list.set(list.size(), 12345);					
+	}
+			
+	@Theory
+	@Test(expected = IndexOutOfBoundsException.class) 
+	public void testException_setAtGtSize(){
+		ArrayList<Integer> list = generateList();
+		
+		//case 3: test with index > size() , 
+		for (int i=0; i<1000; i++) {
+			list.set(Math.abs(rd.nextInt())+list.size(), 1234);		
+		}
+	}
+	
+	
+	
+}
