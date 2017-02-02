@@ -128,7 +128,7 @@ public class hw01_testArrayListSetMethod
 	@Test 
 	public void testIfTheRestOfTheArrayIsUnchanged()
 	{
-		ArrayList<Integer> originalArray = new ArrayList<Integer>();
+		ArrayList<Integer> originalList = new ArrayList<Integer>();
 		originalList = arrayList;
 		Random rd = new Random(100);
 		int index; // index of position 
@@ -139,7 +139,7 @@ public class hw01_testArrayListSetMethod
 
 		arrayList.set(index, newElement);
 
-		assertEquals(arrayList.size(),originalArray.size());
+		assertEquals(arrayList.size(),originalList.size());
 
 		for (int i= 0; i < index; i++)
 		{
