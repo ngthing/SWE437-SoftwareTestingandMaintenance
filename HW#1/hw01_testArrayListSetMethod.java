@@ -35,42 +35,40 @@ public class hw01_ArrayListSetMethodTest
 		arrayList = null;
 	}
 
-	//Test the exception throw when set to position out of bound
+	/*  test case : set() is call when the list is not empty
+	 *  	input : index with values < 0
+	 *  	expect outcome :  throw IndexOutofBound exception
+	 */
 	@Theory
 	@Test  (expected = IndexOutOfBoundsException.class) 
-	public void testExceptionLowBound(){
-		ArrayList<Integer> list = generateList();
+	public void testForCorrectException_WhenIndexSmallerThanBound(){
+		Random rd = new Random(100);
 		for (int i=0; i<1000; i++) {
-			list.set(-1*Math.abs(rd.nextInt()), 1234);		//test lower bound with 1000 negative number
+			arrayList.set(-1*Math.abs(rd.nextInt()), 1234);		//test lower bound with 1000 negative number
 		}
 	}
 	
-	//break into 3 different tests cases
+	/* test case : set() with index = 0 when list is empty
+	 *  	input : empty list, index = 0
+	 *  	expect outcome : throw IOB Exception
+	 */
 	@Theory
 	@Test(expected = IndexOutOfBoundsException.class) 
-	public void testException_emptyList(){
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		//case 1, set to index 0 when list is empty
-		list.set(0, 12345);						
+	public void testForCorrectException_IndexIsZeroOnEmptyList(){
+		arrayList.set(0, 12345);						
 	}
 	
+	/* test case : set() with index equal or greater than list's size()
+	 * 	input : element, index ( >= current list size
+	 */
 	@Theory
 	@Test(expected = IndexOutOfBoundsException.class) 
-	public void testException_setAtSize(){
-		ArrayList<Integer> list = generateList();
-		//case 2, set to index equal size()
-		list.set(list.size(), 12345);					
-	}
-			
-	@Theory
-	@Test(expected = IndexOutOfBoundsException.class) 
-	public void testException_setAtGtSize(){
-		ArrayList<Integer> list = generateList();
-		
-		//case 3: test with index > size() , 
+	public void testForCorrectException_WhenIndexAtHighThanBound(){
+		Random rd = new Random(100);
 		for (int i=0; i<1000; i++) {
-			list.set(Math.abs(rd.nextInt())+list.size(), 1234);		
+			arrayList.set(Math.abs(rd.nextInt())+arrayList.size(), 1234);		
 		}
+		list.set(arrayList.size(), 12345);		//include this line because above loop may miss this circumstance
 	}
 
 	@Test 
