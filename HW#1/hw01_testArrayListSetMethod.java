@@ -73,33 +73,81 @@ public class hw01_ArrayListSetMethodTest
 		}
 	}
 
-	@Test 
+	@Test (expected = NullPointerException.class)
 	public void testForNullList()
 	{
-
+		arrayList = null;
+		arrayList.set(1,3);
 	}
-	@Test
+	@Test(expected = NullPointerException.class)
 	public void testForNullElement()
 	{
-
+		int index = 1; // index of position 
+		arrayList.set(index,null);
 	}
-
-	@Test 
-	public void testForReturnedElement()
-	{
-
-	}
-
+	//  Test if the new element is inserted in correct position
 	@Test
 	public void testForTheNewElementIsInsertedAtTheRightIndex()
 	{
-
+		Random rd = new Random(100);
+		int index; // index of position 
+		Integer	newElement;	 // The new element that need to set to ArrayList
+		for (int i = 0; i < 1000; i++) //test for 1000 replacements
+		{
+			newElement = rd.nextInt(30); // Create a newElement to replace bound 0 <= elem <30			
+			index = rd.nextInt(arrayList.size());	// 0 <= index < arraysize
+			assertEquals(newElement, arrayList.set(index, newElement));
+		}
 	}
 	
+
+	// Test if set() return the element previously at the specified position
+	@Test 
+	public void testForReturnedElement()
+	{
+		Random rd = new Random(100);
+		int index; // index of position 
+		Integer	newElement,		 // The new element that need to set to ArrayList
+				elementAtSpecifiedIndex, 	// The element that will be replaced
+				returnedElement ;  // The returned value from set() method
+		for (int i = 0; i < 1000; i++) //test for 1000 replacements
+		{
+			newElement = rd.nextInt(30); // Create a newElement to replace bound 0 <= elem <30			
+			index = rd.nextInt(arrayList.size());	// 0 <= index < arraysize
+			elementAtSpecifiedIndex = arrayList.get(index);		//get the current element at the position index 	
+			returnedElement = arrayList.set(index, newElement);
+			assertEquals(elementAtSpecifiedIndex,returnedElement);
+		}
+
+	}
+
+	// Test if the newArray and the originalArray is the same in size and 
+	// the rest of other elements beside the element at the specified position. 
 	@Test 
 	public void testIfTheRestOfTheArrayIsUnchanged()
 	{
-		
+		ArrayList<Integer> originalArray = new ArrayList<Integer>();
+		originalList = arrayList;
+		Random rd = new Random(100);
+		int index; // index of position 
+		Integer	newElement; 	 // The new element that need to set to ArrayList
+
+		newElement = rd.nextInt(30); // Create a newElement to replace bound 0 <= elem <30			
+		index = rd.nextInt(arrayList.size());	// 0 <= index < arraysize
+
+		arrayList.set(index, newElement);
+
+		assertEquals(arrayList.size(),originalArray.size());
+
+		for (int i= 0; i < index; i++)
+		{
+			assertEquals(arrayList.get(i), originaList.get(i));
+		}
+
+		for (int i= index + 1; i < arrayList.size(); i++)
+		{
+			assertEquals(arrayList.get(i), originaList.get(i));
+		}
 	}
 		
 	
