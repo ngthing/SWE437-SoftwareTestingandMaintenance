@@ -15,46 +15,26 @@ import org.junit.experimental.theories.Theory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-public class hw01_testArrayListSetMethod {
-	Random rd = new Random(100);
-	
-	public ArrayList<Integer> generateList(){
-		ArrayList<Integer> al = new ArrayList<Integer>();
+public class hw01_ArrayListSetMethodTest 
+{
+	private ArrayList<Integer> arrayList; 
+	 
+	@Before // Sets up - Called before every test method.
+	public void setUp()
+	{
+		Random rd = new Random(100);
 		for (int i=0; i<100; i++){
-			al.add(rd.nextInt(20));		//add random number from 0 to 19 to the arraylist
-		}
-		return al;
-	}
-	
-	/*Test the if the replace is correct which :
-	 * 1.  test if the new element is inserted in correct position
-	 * 2.  test if set() return values is the element that was previously in the replaced position
-	 * 3.  test to make sure all elements before & after the set's position are no changed (in orders and values)
-	*/
-	@Test 
-	public void testReplacement(){
-		ArrayList<Integer> list = generateList();
-		int index; 				//index of position
-		Integer	newElem,		//to hold new element that need to set to ArrayList
-			replElem, 			//to hold element that will be replaced
-			retElem;			//to hold the return value from set() method
-		
-		for (int i=0; i<1000; i++){				//test for 1000 replacements
-			newElem = rd.nextInt(30);			//bound 0<= elem <30
-			index = rd.nextInt(list.size());	// 0<= index < arraysize
-			replElem = list.get(index);		//get the current element at the position index 	
-			retElem = list.set(index, newElem );
-			//test condition 1
-			assertEquals(newElem, list.get(index));
-			
-			//test condition 2
-			assertEquals(retElem, replElem);		
-			
-			
-			//test for condition 4: make sure all elements before the index, and after the index are no changed
+			//add random number from 0 to 19 to the arraylist
+			arrayList.add(rd.nextInt(20));		
 		}
 	}
 	
+	@After // Called after every test method.
+	public void tearDown()
+	{
+		arrayList = null;
+	}
+
 	//Test the exception throw when set to position out of bound
 	@Theory
 	@Test  (expected = IndexOutOfBoundsException.class) 
@@ -92,7 +72,36 @@ public class hw01_testArrayListSetMethod {
 			list.set(Math.abs(rd.nextInt())+list.size(), 1234);		
 		}
 	}
+
+	@Test 
+	public void testForNullList()
+	{
+
+	}
+	@Test
+	public void testForNullElement()
+	{
+
+	}
+
+	@Test 
+	public void testForReturnedElement()
+	{
+
+	}
+
+	@Test
+	public void testForTheNewElementIsInsertedAtTheRightIndex()
+	{
+
+	}
 	
+	@Test 
+	public void testIfTheRestOfTheArrayIsUnchanged()
+	{
+		
+	}
+		
 	
 	
 }
