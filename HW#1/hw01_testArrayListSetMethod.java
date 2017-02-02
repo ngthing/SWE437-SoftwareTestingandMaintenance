@@ -148,7 +148,7 @@ public class hw01_testArrayListSetMethod
 
 	/* Test case 8:  test if set() does not affect values and order of other element
 			input : elements of original array,  index : position of the element to be replaced
-			expect : all other elements except the element at <index> position
+			expect : all other elements except the element at <index> position are unchange in order & values
 	*/
 	@Test 
 	public void testIfTheRestOfTheArrayIsUnchanged()

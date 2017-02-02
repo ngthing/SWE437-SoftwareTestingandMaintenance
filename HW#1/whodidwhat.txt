@@ -1,3 +1,9 @@
 We discus about all possible testcases, their inputs, expect outputs.
-Thi Nguyen codes test case 4 to 8, @before and @after methods
-Kien Nguyen codes test case 1 to 3, fix errors to make all tests passe, put the comments.
+Thi Nguyen
+	name all testcases
+	codes test case 4 to 8, 
+	@before and @after methods
+Kien Nguyen 
+	codes test case 1 to 3, comments all testcases
+	fix syntax & compiler errors to make all tests pass
+	write this file.
