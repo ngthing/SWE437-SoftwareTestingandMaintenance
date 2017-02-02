@@ -37,10 +37,9 @@ public class hw01_testArrayListSetMethod
 		arrayList = null;
 	}
 
-	/*  test case : set() is call when the list is not empty
+	/*  Test case 1 : set() is call when the list is not empty
 	 *  	input : index with values < 0
-	 *  	expect outcome :  throw IndexOutofBound exception
-	 */
+	 *  	expect outcome :  throw IndexOutofBound exception 	 */
 	@Theory
 	@Test  (expected = IndexOutOfBoundsException.class) 
 	public void testForCorrectException_WhenIndexSmallerThanBound(){
@@ -50,19 +49,17 @@ public class hw01_testArrayListSetMethod
 		}
 	}
 	
-	/* test case : set() with index = 0 when list is empty
+	/* Test case 2: set() with index = 0 when list is empty
 	 *  	input : empty list, index = 0
-	 *  	expect outcome : throw IOB Exception
-	 */
+	 *  	expect outcome : throw IOB Exception	 	*/
 	@Theory
 	@Test(expected = IndexOutOfBoundsException.class) 
 	public void testForCorrectException_IndexIsZeroOnEmptyList(){
 		arrayList.set(0, 12345);						
 	}
 	
-	/* test case : set() with index equal or greater than list's size()
-	 * 	input : element, index ( >= current list size 
-	 */
+	/* Test case 3: set() with index equal or greater than list's size()
+	 * 		input : element, index >= current list size				 */
 	@Theory
 	@Test(expected = IndexOutOfBoundsException.class) 
 	public void testForCorrectException_WhenIndexAtHighThanBound(){
@@ -73,19 +70,24 @@ public class hw01_testArrayListSetMethod
 		arrayList.set(arrayList.size(), 12345);		//include this line because above loop may miss this circumstance
 	}
 
+	
+	/* Test case 4: when Set() is called when the ArrayList is null */
 	@Test (expected = NullPointerException.class)
 	public void testForNullList()
 	{
 		arrayList = null;
 		arrayList.set(1,3);
 	}
+	
+	/* Test case 5: when Set() is called when the ArrayList is null */
 	@Test(expected = NullPointerException.class)
 	public void testForNullElement()
 	{
 		int index = 1; // index of position 
 		arrayList.set(index,null);
 	}
-	//  Test if the new element is inserted in correct position
+	
+	/* Test case 6: verify if the set() put the new element in correct position  */ 
 	@Test
 	public void testForTheNewElementIsInsertedAtTheRightIndex()
 	{
@@ -101,7 +103,7 @@ public class hw01_testArrayListSetMethod
 	}
 	
 
-	// Test if set() return the element previously at the specified position
+	/* Test case 7: verify if the set() replace correct element (which is the element at given index) */
 	@Test 
 	public void testForReturnedElement()
 	{
@@ -121,8 +123,8 @@ public class hw01_testArrayListSetMethod
 
 	}
 
-	// Test if the newArray and the originalArray is the same in size and 
-	// the rest of other elements beside the element at the specified position. 
+	// Test case 8:  if the newArray and the originalArray is the same in size and 
+	// the rest of other elements beside the element at the specified position.    
 	@Test 
 	public void testIfTheRestOfTheArrayIsUnchanged()
 	{
