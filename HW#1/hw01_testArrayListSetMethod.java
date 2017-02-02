@@ -14,17 +14,20 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.theories.Theory;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
+import static org.junit.Assert.assertEquals;
+
+//@RunWith (Theories.class)
 public class hw01_testArrayListSetMethod 
 {
 	private ArrayList<Integer> arrayList; 
-	 
+	private Random rd;
+	
 	@Before // Sets up - Called before every test method.
 	public void setUp()
 	{
-		Random rd = new Random(100);
+		arrayList = new ArrayList<Integer>(); 			//initialize arrayList here
+		rd = new Random(100);							//initialize random generator with seed = 100;
 		for (int i=0; i<100; i++){
 			//add random number from 0 to 19 to the arraylist
 			arrayList.add(rd.nextInt(20));		
@@ -35,6 +38,7 @@ public class hw01_testArrayListSetMethod
 	public void tearDown()
 	{
 		arrayList = null;
+		rd = null;
 	}
 
 	/*  Test case 1 : set() is call when the list is not empty
@@ -43,7 +47,6 @@ public class hw01_testArrayListSetMethod
 	@Theory
 	@Test  (expected = IndexOutOfBoundsException.class) 
 	public void testForCorrectException_WhenIndexSmallerThanBound(){
-		Random rd = new Random(100);
 		for (int i=0; i<1000; i++) {
 			arrayList.set(-1*Math.abs(rd.nextInt()), 1234);		//test lower bound with 1000 negative number
 		}
@@ -55,15 +58,17 @@ public class hw01_testArrayListSetMethod
 	@Theory
 	@Test(expected = IndexOutOfBoundsException.class) 
 	public void testForCorrectException_IndexIsZeroOnEmptyList(){
-		arrayList.set(0, 12345);						
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		list.set(0, 12345);						
 	}
 	
 	/* Test case 3: set() with index equal or greater than list's size()
-	 * 		input : element, index >= current list size				 */
+	 * 		input : element, index >= current list size				 
+	 *		expect outcome : throw IOB exception 		
+	 * */
 	@Theory
 	@Test(expected = IndexOutOfBoundsException.class) 
 	public void testForCorrectException_WhenIndexAtHighThanBound(){
-		Random rd = new Random(100);
 		for (int i=0; i<1000; i++) {
 			arrayList.set(Math.abs(rd.nextInt())+arrayList.size(), 1234);		
 		}
@@ -71,7 +76,9 @@ public class hw01_testArrayListSetMethod
 	}
 
 	
-	/* Test case 4: when Set() is called when the ArrayList is null */
+	/* Test case 4: when Set() is called when the ArrayList is null 
+	 * 	 expect outcome:  throw NPE 
+	 * */
 	@Test (expected = NullPointerException.class)
 	public void testForNullList()
 	{
@@ -79,43 +86,55 @@ public class hw01_testArrayListSetMethod
 		arrayList.set(1,3);
 	}
 	
-	/* Test case 5: when Set() is called when the ArrayList is null */
+	/* Test case 5: when Set() is called when the ArrayList is null  */ 
+	/* Hi Thi, I dont think this test is relevant to set() method 
+	 * 	because  it accepts any elements include null value 
+	 *  so I comment it out.
 	@Test(expected = NullPointerException.class)
 	public void testForNullElement()
 	{
 		int index = 1; // index of position 
 		arrayList.set(index,null);
-	}
+	}*/
 	
-	/* Test case 6: verify if the set() put the new element in correct position  */ 
+	
+	/* Test case 6: verify if the set() put the new element in correct position  
+	 * *  	input : new element, index
+	 *  	expect: after set() is invoke, the element that is currently at position 
+	 *  			index must equals new element
+	 * */ 
 	@Test
 	public void testForTheNewElementIsInsertedAtTheRightIndex()
 	{
-		Random rd = new Random(100);
-		int index; // index of position 
-		Integer	newElement;	 // The new element that need to set to ArrayList
-		for (int i = 0; i < 1000; i++) //test for 1000 replacements
+		int index; 									// index of position 
+		Integer	newElement;	 						// The new element that need to set to ArrayList
+		for (int i = 0; i < 1000; i++) 				//test for 1000 replacements
 		{
-			newElement = rd.nextInt(30); // Create a newElement to replace bound 0 <= elem <30			
+			newElement = rd.nextInt(50); 			// Create a newElement to replace bound 0 <= elem <30			
 			index = rd.nextInt(arrayList.size());	// 0 <= index < arraysize
-			assertEquals(newElement, arrayList.set(index, newElement));
+			arrayList.set(index, newElement);
+			assertEquals(newElement, arrayList.get(index));
 		}
 	}
 	
 
-	/* Test case 7: verify if the set() replace correct element (which is the element at given index) */
+	/* Test case 7: verify if the set() replaces correct element. 
+	 * New element will replace the current element at given index. 
+	 *  	input : index, element current at the position index
+	 *  	output : replaced element
+	 *  	expect : after set, the element at position index must equals new element
+	 *  */
 	@Test 
-	public void testForReturnedElement()
+	public void testForCorrectReturnedElement()
 	{
-		Random rd = new Random(100);
 		int index; // index of position 
-		Integer	newElement,		 // The new element that need to set to ArrayList
-				elementAtSpecifiedIndex, 	// The element that will be replaced
-				returnedElement ;  // The returned value from set() method
-		for (int i = 0; i < 1000; i++) //test for 1000 replacements
+		Integer	newElement,		 					// The new element that need to set to ArrayList
+				elementAtSpecifiedIndex, 			// The element that will be replaced
+				returnedElement ;  					// The returned value from set() method
+		for (int i = 0; i < 1000; i++) 				//test for 1000 replacements
 		{
-			newElement = rd.nextInt(30); // Create a newElement to replace bound 0 <= elem <30			
-			index = rd.nextInt(arrayList.size());	// 0 <= index < arraysize
+			newElement = rd.nextInt(30); 						// Create a newElement to replace bound 0 <= elem <30			
+			index = rd.nextInt(arrayList.size());				// 0 <= index < arraysize
 			elementAtSpecifiedIndex = arrayList.get(index);		//get the current element at the position index 	
 			returnedElement = arrayList.set(index, newElement);
 			assertEquals(elementAtSpecifiedIndex,returnedElement);
@@ -128,30 +147,34 @@ public class hw01_testArrayListSetMethod
 	@Test 
 	public void testIfTheRestOfTheArrayIsUnchanged()
 	{
-		ArrayList<Integer> originalList = new ArrayList<Integer>();
-		originalList = arrayList;
-		Random rd = new Random(100);
-		int index; // index of position 
-		Integer	newElement; 	 // The new element that need to set to ArrayList
-
-		newElement = rd.nextInt(30); // Create a newElement to replace bound 0 <= elem <30			
-		index = rd.nextInt(arrayList.size());	// 0 <= index < arraysize
-
-		arrayList.set(index, newElement);
-
-		assertEquals(arrayList.size(),originalList.size());
-
-		for (int i= 0; i < index; i++)
-		{
-			assertEquals(arrayList.get(i), originaList.get(i));
-		}
-
-		for (int i= index + 1; i < arrayList.size(); i++)
-		{
-			assertEquals(arrayList.get(i), originaList.get(i));
+		ArrayList<Integer> originalList;
+		int index;
+		Integer	newElement; 
+		//using copy construct, originalList will have same element as arrayList
+		//but modification to arrayList will not affect originalList
+		//	originalList = arrayList;
+		
+		for (int i=0; i<100; i++) {					//do 100 invoke to set() and each time verify if other elements are no affected 
+			newElement = rd.nextInt(30); 			// new randomized element
+			index = rd.nextInt(arrayList.size());	// new randomized index that [0...size)
+			
+			//make the copy of arrayList
+			//using copy constructor so originalList will have same element as arrayList
+			//but modification to arrayList will not affect originalList. 
+			//note : using ogiginalList = arrayList will actually refer to the same object.
+			originalList = new ArrayList<Integer>(arrayList);
+			arrayList.set(index, newElement);
+			
+			//now check if size is unchanged
+			assertEquals(arrayList.size(), originalList.size());
+			
+			//and check if all other elements are not affected by invoke of the set()
+			for (int k=0; k < index; k++) 
+				assertEquals(arrayList.get(k), originalList.get(k));
+			for (int k=index + 1; k < arrayList.size(); k++)
+				assertEquals(arrayList.get(k), originalList.get(k));
 		}
 	}
 		
-	
 	
 }
