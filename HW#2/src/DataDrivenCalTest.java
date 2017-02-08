@@ -18,13 +18,14 @@ public class DataDrivenCalTest {
 	
 	@Parameters public static Collection<Object[]> parameters(){
 		return Arrays.asList(new Object[][]{
-			{2,1,4,2,2016,61}, // Leap year 2016, m1=2, d1=1, m2=4, d2=2, expected = 60
-			{2,1,4,2,2016,60},
+			// Input in order: m1, d1, m2, d2, year, expectedNumDays
+			{1,1,1,31,2016,30}, // Test same month, numDays = d2-d1
+			{2,1,3,1,2020,29},  // Leap year
+			{3,1,2,1,2016,}, // Test the precondition invalid when input m2<m1 ? what happen to output?
 		});
 	}
 
-//	Test is numDays returned correctly with input is leap year
-	@Test public void leapYearTest(){
+	@Test public void calTest(){
 		
 	}
 	
