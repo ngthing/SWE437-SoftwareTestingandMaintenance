@@ -1,0 +1,13 @@
+We discuss the homework problems and solution
+Thi Nguyen : 
+  edit data set for month 1 = month2 and data set for test leap year
+  write the test case
+Kien 
+  edit data set for consecutive month test, and month 2 is greater than month 2 more than 1
+  edit this file.
+  
+Both of us edit the answer for the part
+  Assessment of your test set.
+  Discussion of fault missed by your test set.
+  Discussion of fault found by your test set
+  
