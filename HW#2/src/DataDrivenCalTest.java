@@ -9,9 +9,9 @@ import java.util.*;
 public class DataDrivenCalTest {
 	public int month1, month2, day1, day2, year, numDays;
 
-	public DataDrivenCalTest(int m1, int d1, int m2, int d2, int year, int expectedNumDays){
-		this.month1 = m1; this.day1 = d1;
-		this.month2 = m2; this.day2 = d2;
+	public DataDrivenCalTest(int m1, int m2, int d1, int d2, int year, int expectedNumDays){
+		this.month1 = m1; this.month2 = m2;
+		this.day1 = d1; this.day2 = d2;
 		this.year = year;
 		this.numDays = expectedNumDays;
 	}
