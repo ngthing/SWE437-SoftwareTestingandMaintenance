@@ -18,18 +18,28 @@ public class DataDrivenCalTest {
 	
 	@Parameters public static Collection<Object[]> parameters(){
 		return Arrays.asList(new Object[][]{
-			// Input in order: m1, d1, m2, d2, year, expectedNumDays
-			{1,1,1,31,2016,30}, // Test same month, numDays = d2-d1
-			{2,1,3,1,2020,29},  // Leap year
-			{3,1,2,1,2016,}, // Test the precondition invalid when input m2<m1 ? what happen to output?
+			// Input in order: m1, m2, d1, d2, year, expectedNumDays
+			// Test same month m1=m2, regular year
+			{1,1,1,1,2016,0}, // d1 = d2
+			{2,2,1,1,2017,0}, // d1 = d2
+			{1,1,1,31,2016,30}, // d1 < d2
+			{2,2,1,18,2017,17}, // d1 < d2
+			
+			// Test leap year
+			// The following are some leap year: 1904, 1908, 1912, 2000,2004,2008
+			{2,3,1,1,1904,29},
+			{2,3,1,1,1908,29},
+			{2,3,1,1,1912,29},
+			{1,12,1,31,2000,365},
+			{1,12,1,31,2004,365},
+			{2,3,28,1,2008,2},
+			{2,3,1,1,2020,29}, 
 		});
 	}
 
-	@Test public void calTest(){
-		
+	@Test public void calHappyPathTest(){
+	 assertTrue ("Calculate number of days between two dates Test", 
+			 numDays == Cal.cal ( month1, day1, month2, day2, year)); 
 	}
 	
-	@Test public void day2GreaterThanOrEqualDay1Test(){
-		
-	}
 }
