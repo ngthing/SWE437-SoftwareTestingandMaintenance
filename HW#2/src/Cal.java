@@ -32,7 +32,7 @@ public class Cal
          int m4 = year % 4; 
          int m100 = year % 100;
          int m400 = year % 400;
-         if ((m4 != 0) || ((m100 == 0) && (m400 != 0)))
+         if ((m4 != 0) || ((m100 == 0) && (m400 == 0)))
             daysIn[2] = 28; 
          else
             daysIn[2] = 29;
