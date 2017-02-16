@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
-
+=======
 import static org.junit.Assert.*;
-
+>>>>>>> da9f2bee0ba9f40b73f9cb809b8acd4756316318
 import org.junit.Test;
 
 public class AbstractListEqualsMethodTest {
