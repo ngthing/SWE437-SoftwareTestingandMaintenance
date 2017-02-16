@@ -56,8 +56,4 @@ public class AbstractListEqualsMethodTest {
 		hasEntryLList.add("I am empty Linked List");
 		assertFalse(noEntryAList.equals(hasEntryLList));
 	}
-	
-	@DataPoint 
-	public static ArrayList<String> a1 = new ArrayList<String>(); 
-	
 }

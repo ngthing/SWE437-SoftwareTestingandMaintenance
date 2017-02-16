@@ -26,6 +26,12 @@ import java.util.*;
 @RunWith (Theories.class)
 public class AbstractListEqualsMethodTest {
 	
+	
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
 	@Test public void testIfBranch1(){
 		ArrayList<String> alist1 = new ArrayList<String>();
 		alist1.add("this");
@@ -56,8 +62,4 @@ public class AbstractListEqualsMethodTest {
 		hasEntryLList.add("I am empty Linked List");
 		assertFalse(noEntryAList.equals(hasEntryLList));
 	}
-	
-	@DataPoint 
-	public static ArrayList<String> a1 = new ArrayList<String>(); 
-	
 }

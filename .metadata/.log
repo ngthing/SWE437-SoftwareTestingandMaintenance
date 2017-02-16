@@ -103,3 +103,13 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.core.resources 4 567 2017-02-15 22:26:32.000
 !MESSAGE The project description file (.project) for 'HW#2JUnit' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+!SESSION 2017-02-16 00:22:49.502 -----------------------------------------------
+eclipse.buildId=4.6.1.M20160907-1200
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -keyring /Users/thinguyen/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -data file:/Users/thinguyen/Documents/GMU/CURRENT/SWE437/SWE437-Git/ -product org.eclipse.epp.package.java.product -keyring /Users/thinguyen/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2017-02-16 00:23:02.632
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

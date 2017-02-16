@@ -11,21 +11,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import org.junit.*;
-import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
-
-import org.junit.experimental.theories.DataPoint;
-import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
-
-import java.util.*;
-
-@RunWith (Theories.class)
 public class AbstractListEqualsMethodTest {
 	
+	
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
 	@Test public void testIfBranch1(){
 		ArrayList<String> alist1 = new ArrayList<String>();
 		alist1.add("this");
@@ -56,8 +49,4 @@ public class AbstractListEqualsMethodTest {
 		hasEntryLList.add("I am empty Linked List");
 		assertFalse(noEntryAList.equals(hasEntryLList));
 	}
-	
-	@DataPoint 
-	public static ArrayList<String> a1 = new ArrayList<String>(); 
-	
 }
