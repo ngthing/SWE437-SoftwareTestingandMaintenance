@@ -30,7 +30,7 @@ public class AbstractListEqualsMethodTest {
 		alist1.add("test");
 		assertFalse(alist1.equals(new TreeSet<Integer>()));
 	}
-	@Test public void whileLoopBypass_Test(){
+	@Test public void whileLoopNotRun_Test(){
 		//branch 1: while loop is skipped
 		ArrayList<String> hasEntryAList= new ArrayList<String>();
 		hasEntryAList.add("I am not empty Array List");
