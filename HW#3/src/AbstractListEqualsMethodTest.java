@@ -51,26 +51,26 @@ public class AbstractListEqualsMethodTest {
 	}
 	
 	@Test public void whileLoopRun_Test(){
-		//  cover the case when the express (!(o1==null ? o2==null : o1.equals(o2)))  return  o2==null
-		// the the express o2==null  return true; 
+		// cover the case when the express (!(o1==null ? o2==null : o1.equals(o2)))  returns  o2==null
+		// and the express o2==null  returns true; 
 		ArrayList<String> list1 = new ArrayList<String>(Arrays.asList("Testing", "is", null, "fun?"));
 		ArrayList<String> list2 = new ArrayList<String>(Arrays.asList("Testing", "is", null, "fun?"));
 		assertTrue(list1.equals(list2));
 		
 		//cover the case when the express (!(o1==null ? o2==null : o1.equals(o2)))  return o2==null 
-		// the the express o2==null  return false;
+		// and the express o2==null  returns false;
 		ArrayList<String> list3 = new ArrayList<String>(Arrays.asList("Testing", "is", null, "fun?"));
 		ArrayList<String> list4 = new ArrayList<String>(Arrays.asList("Testing", "is", "very","fun"));
 		assertFalse(list3.equals(list4));
 		
 		//cover the case when the express (!(o1==null ? o2==null : o1.equals(o2)))  return o1.equals(o2)
-		// the the express o1.equals(o2)  return true;
+		// and the express o1.equals(o2)  returns true;
 		ArrayList<String> list5 = new ArrayList<String>(Arrays.asList("Testing", "is", "sound", "fun?"));
 		ArrayList<String> list6 = new ArrayList<String>(Arrays.asList("Testing", "is", "seem","not fun"));
 		assertFalse(list5.equals(list6));
 		
 		//cover the case when the express (!(o1==null ? o2==null : o1.equals(o2)))  return o1.equals(o2)
-				// the the express o1.equals(o2)  return false;
+		// the the express o1.equals(o2)  returns false;
 		ArrayList<String> list7 = new ArrayList<String>(Arrays.asList("Testing", "is", "sound", "fun?"));
 		ArrayList<String> list8 = new ArrayList<String>(Arrays.asList("Testing", "is", "seem","fun"));
 				assertFalse(list7.equals(list8));
