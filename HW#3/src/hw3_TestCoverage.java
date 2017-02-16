@@ -56,24 +56,40 @@ public class hw3_TestCoverage {
 		assertTrue(li1.equals(li2));			//this make sure the IF inside whileloop has not run
 	}
 	
+
 	@Test public void whileLoopHappyPath_Test(){
-		//test return true
+		//Both has the same number of identical elements. 
 		MyList<String> list1 = new MyList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
 		MyList<String> list2 = new MyList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
 		assertTrue(list1.equals(list2));
 		
-		//test return false
+		// When this and o have different number of elements 
 		MyList<String> list3 = new MyList<String>(Arrays.asList("Testing", "is", "fun", "or not"));
 		MyList<String> list4 = new MyList<String>(Arrays.asList("Testing", "is", "fun"));
-		assertFalse(list3.equals(list4) || list4.equals(list3));
+		// At one point, e2.hasNext() returns false. 
+		assertFalse(list3.equals(list4));
+		// At one point, e1.hasNext() returns false. 
+		assertFalse(list4.equals(list3));
+		// Test when both has the same number of elements, but the last elements are different. 
+		MyList<String> list5 = new MyList<String>(Arrays.asList("Testing", "is", "fun"));
+		MyList<String> list6 = new MyList<String>(Arrays.asList("Testing", "is", "not fun"));
+		
+		assertFalse(list5.equals(list6));
 	}	
 	
+	// Testing when either or both e1.hasNext() & e2.hasNext() return false.
+	// test the correctness of the last return statement !(e1.hasNext() || e2.hasNext())
+	// while (e1.hasNext() && e2.hasNext()){ ... } return !(e1.hasNext() || e2.hasNext());
 	@Test public void lastReturnTest(){
 		//test return true
 		MyList<String> list1 = new MyList<String>(Arrays.asList("Testing", "is", "fun?"));
 		MyList<String> list2 = new MyList<String>(Arrays.asList("Testing", "is") );
 		MyList<String> list3 = new MyList<String>(Arrays.asList("Testing", "is") );
-		assertFalse( list1.equals(list2) || list2.equals(list1) );
+		// e1.hasNext() == true, return !(true || false) = false
+		assertFalse(list1.equals(list2))
+		// e2.hasNext() == true, return !(true || false) = false
+		assertFalse(list2.equals(list1));
+		// e1.hasNext() == false and e2.hasNext() == false return !(false || false) = true
 		assertTrue( list2.equals(list3)); 
 	}
 	
