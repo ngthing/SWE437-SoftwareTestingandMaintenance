@@ -1,5 +1,7 @@
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.TreeSet;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class AbstractListEqualsMethodTest {
@@ -18,14 +20,14 @@ public class AbstractListEqualsMethodTest {
 		alist1.add("test");
 		assertTrue(alist1.equals(alist1));
 	}
-	@Test public void testIfBranch1(){
+	@Test public void testIfBranch2(){
 		ArrayList<String> alist1 = new ArrayList<String>();
 		alist1.add("this");
 		alist1.add("is");
-		alist1.add("first");
+		alist1.add("second");
 		alist1.add("if");
 		alist1.add("test");
-		assertTrue(alist1.equals(alist1));
+		assertFalse(alist1.equals(new TreeSet<Integer>()));
 	}
 	
 }
