@@ -1,6 +1,10 @@
 /***
 Created: Feb 15, 2017
 Author: Kien Nguyen 
+MyList class extends ArrayList (which is also an instance of AbstractList class) and override the 
+equals() method of ArrayList with the code of AbstractList class's equals() method to make sure that 
+we are testing the required equals() method. 
+equals() method code below is taken from Java's source code available in Eclipse. 
 ***/
 import java.util.ArrayList;
 import java.util.List;
