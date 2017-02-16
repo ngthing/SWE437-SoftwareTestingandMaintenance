@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.TreeSet;
 
 import java.util.ArrayList;
@@ -36,5 +37,16 @@ public class AbstractListEqualsMethodTest {
 		alist1.add("test");
 		assertFalse(alist1.equals(new TreeSet<Integer>()));
 	}
-	
+	@Test public void whileLoopNotRun_Test(){
+		//branch 1: while loop is skipped
+		ArrayList<String> hasEntryAList= new ArrayList<String>();
+		hasEntryAList.add("I am not empty Array List");
+		LinkedList<String> noEntryLList = new LinkedList<String>();
+		assertFalse(hasEntryAList.equals(noEntryLList));
+		
+		ArrayList<String> noEntryAList= new ArrayList<String>();
+		LinkedList<String> hasEntryLList = new LinkedList<String>();
+		hasEntryLList.add("I am empty Linked List");
+		assertFalse(noEntryAList.equals(hasEntryLList));
+	}
 }
