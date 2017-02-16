@@ -1,5 +1,10 @@
+/***
+Created: Feb 15, 2017
+Author: Kien Nguyen & Thi Nguyen 
+SWE 437 - HW#3: More JUnit/Introduction to Coverage http://cs.gmu.edu/~pammann/437/assigns/assign03.html
+Test the equals() method in the Java AbstractList class
+***/
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -12,6 +17,7 @@ public class hw3_TestCoverage {
 	private MyList<Integer> a1 = new MyList<Integer>();
 	private MyList<Integer> a2 = new MyList<Integer>();
 	
+	// Test when o == this
 	@Test public void testIfBranch1(){
 		MyList<String> alist1 = new MyList<String>();
 		alist1.add("this");
@@ -21,7 +27,7 @@ public class hw3_TestCoverage {
 		alist1.add("test");
 		assertTrue(alist1.equals(alist1));
 	}
-	
+	// Test when o is not an instance of List
 	@Test public void testIfBranch2(){
 		MyList<String> alist1 = new MyList<String>();
 		alist1.add("this");
@@ -32,14 +38,21 @@ public class hw3_TestCoverage {
 		assertFalse(alist1.equals(new TreeSet<Integer>()));
 	}
 	
+	// When either e1.hasNext() or e2.hasNext() or both return false, then 
+	// while (e1.hasNext() && e2.hasNext()) will be skipped. The expected result is
+	// !(e1.hasNext() || e2.hasNext()) 
 	@Test public void whileLoopNotRun_Test(){
 		//branch 1: while loop is skipped
 		MyList<String> li1= new MyList<String>();
 		li1.add("Not empty");
 		MyList<String> li2 = new MyList<String>();
+		// e2.hasNext() returns False
 		assertFalse(li1.equals(li2));
+		// e1.hasNext() returns False
 		assertFalse(li2.equals(li1));
 		li1.remove("Not empty");
+		// Both e1.hasNext() & e2.hasNext() return False
+		// and both class are empty.
 		assertTrue(li1.equals(li2));			//this make sure the IF inside whileloop has not run
 	}
 	
