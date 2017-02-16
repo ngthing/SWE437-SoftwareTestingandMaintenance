@@ -1,0 +1,30 @@
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class AbstractListEqualsMethodTest {
+	private ArrayList<Integer> arrayList; 
+	@Before // Sets up - Called before every test method.
+	public void setUp()
+	{
+		arrayList = new ArrayList<Integer>(); 	//initialize arrayList here
+		arrayList.equals(null);
+	}
+	
+	@After // Called after every test method.
+	public void tearDown()
+	{
+		arrayList = null;
+		
+	}
+	
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
