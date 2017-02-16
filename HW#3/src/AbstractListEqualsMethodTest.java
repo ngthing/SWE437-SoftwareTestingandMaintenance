@@ -39,15 +39,34 @@ public class AbstractListEqualsMethodTest {
 	}
 	@Test public void whileLoopNotRun_Test(){
 		//branch 1: while loop is skipped
-		ArrayList<String> hasEntryAList= new ArrayList<String>();
-		hasEntryAList.add("I am not empty Array List");
-		LinkedList<String> noEntryLList = new LinkedList<String>();
-		assertFalse(hasEntryAList.equals(noEntryLList));
+		ArrayList<String> li1= new ArrayList<String>();
+		li1.add("Not empty");
+		ArrayList<String> li2 = new ArrayList<String>();
+		assertFalse(li1.equals(li2));
+		assertFalse(li2.equals(li1));
+		li1.remove("Not empty");
+		assertTrue(li1.equals(li2));			//this make sure the IF inside whileloop has not run
+	}
+	
+	@Test public void whileLoopHappyPath_Test(){
+		//test return true
+		ArrayList<String> list1 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
+		ArrayList<String> list2 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
+		assertTrue(list1.equals(list2));
 		
-		ArrayList<String> noEntryAList= new ArrayList<String>();
-		LinkedList<String> hasEntryLList = new LinkedList<String>();
-		hasEntryLList.add("I am empty Linked List");
-		assertFalse(noEntryAList.equals(hasEntryLList));
+		//test return false
+		ArrayList<String> list3 = new ArrayList<String>(Arrays.asList("Testing", "is", "fun", "or not"));
+		ArrayList<String> list4 = new ArrayList<String>(Arrays.asList("Testing", "is", "fun"));
+		assertFalse(list3.equals(list4) || list4.equals(list3));
+	}	
+	
+	@Test public void lastReturnTest(){
+		//test return true
+		ArrayList<String> list1 = new ArrayList<String>(Arrays.asList("Testing", "is", "fun?"));
+		ArrayList<String> list2 = new ArrayList<String>(Arrays.asList("Testing", "is") );
+		ArrayList<String> list3 = new ArrayList<String>(Arrays.asList("Testing", "is") );
+		assertFalse( list1.equals(list2) || list2.equals(list1) );
+		assertTrue( list2.equals(list3)); 
 	}
 	
 	@Test public void whileLoopRun_Test(){
@@ -75,16 +94,5 @@ public class AbstractListEqualsMethodTest {
 		ArrayList<String> list8 = new ArrayList<String>(Arrays.asList("Testing", "is", "seem","fun"));
 				assertFalse(list7.equals(list8));
 	}
-	
-	@Test public void whileLoopHappyPath_Test(){
-		//test return true
-		ArrayList<String> list1 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
-		ArrayList<String> list2 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
-		assertTrue(list1.equals(list2));
-		
-		//test return false
-		ArrayList<String> list3 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun right?"));
-		ArrayList<String> list4 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
-		assertFalse(list3.equals(list4));
-	}
+
 }
