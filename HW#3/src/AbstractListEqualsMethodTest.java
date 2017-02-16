@@ -49,4 +49,24 @@ public class AbstractListEqualsMethodTest {
 		hasEntryLList.add("I am empty Linked List");
 		assertFalse(noEntryAList.equals(hasEntryLList));
 	}
+	
+	@Test public void whileLoopRun_Test(){
+		ArrayList<String> list1 = new ArrayList<String>(Arrays.asList("Testing", "is", null, "fun?"));
+		ArrayList<String> list2 = new ArrayList<String>(Arrays.asList("Testing", "is", null, "fun?"));
+		assertTrue(list1.equals(list2));
+		
+		ArrayList<String> list3 = new ArrayList<String>(Arrays.asList("Testing", "is", null, "fun?"));
+		ArrayList<String> list4 = new ArrayList<String>(Arrays.asList("Testing", "is", "very","fun"));
+		assertFalse(list3.equals(list4));
+		
+		ArrayList<String> list5 = new ArrayList<String>(Arrays.asList("Testing", "is", "sound", "fun?"));
+		ArrayList<String> list6 = new ArrayList<String>(Arrays.asList("Testing", "is", null,"fun"));
+		assertFalse(list5.equals(list6));
+	}
+	
+	@Test public void whileLoopHappyPath_Test(){
+		ArrayList<String> list1 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
+		ArrayList<String> list2 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
+		assertTrue(list1.equals(list2));
+	}
 }
