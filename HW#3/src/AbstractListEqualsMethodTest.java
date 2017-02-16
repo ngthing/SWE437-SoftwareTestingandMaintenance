@@ -65,8 +65,14 @@ public class AbstractListEqualsMethodTest {
 	}
 	
 	@Test public void whileLoopHappyPath_Test(){
+		//test return true
 		ArrayList<String> list1 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
 		ArrayList<String> list2 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
 		assertTrue(list1.equals(list2));
+		
+		//test return false
+		ArrayList<String> list3 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun right?"));
+		ArrayList<String> list4 = new ArrayList<String>(Arrays.asList("Testing", "is", "alot of", "fun?"));
+		assertFalse(list3.equals(list4));
 	}
 }
