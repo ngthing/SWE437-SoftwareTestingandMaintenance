@@ -1,0 +1,13 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class RegexLearningTest {
+    @Test
+    public void testHowGroupCountWorks() throws Exception {
+        String haystack = "The needle shop sells needles";
+        String regex = "(needle)";
+        Matcher matcher = Pattern.compile(regex).matcher(haystack);
+        assertEquals(2, matcher.groupCount());
+    }
+}

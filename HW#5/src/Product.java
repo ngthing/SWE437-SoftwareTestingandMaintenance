@@ -1,0 +1,53 @@
+/***
+ * 03/02/2017
+ * Kien Nguyen & Thi Nguyen
+ * SWE 437 - Software Testing and Maintenance 
+ * Using Mockito Java Mocking Tools
+ */
+public class Product {
+	private int productId;
+	private String productName;
+	private int productQty;
+	private int productPrice;
+	
+	public Product(int id, String name, int qty, int price){
+		this.setProductId(id);
+		this.setProductName(name);
+		this.setProductQty(qty);
+		this.setProductPrice(price);
+	}
+
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public int getProductQty() {
+		return productQty;
+	}
+
+	public void setProductQty(int productQty) {
+		if (productQty<0) throw new IllegalArgumentException("qty must > 0");
+		this.productQty = productQty;
+	}
+	
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+}

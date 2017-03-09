@@ -1,0 +1,49 @@
+/***
+ * 03/02/2017
+ * Kien Nguyen & Thi Nguyen
+ * SWE 437 - Software Testing and Maintenance 
+ * Using Mockito Java Mocking Tools
+ */
+import java.util.List;
+public class ShoppingCart {
+	private CartService cartService; 
+	private int cartId;
+	private List<Product> pList;
+	
+	public void setCardService(CartService cs){
+		this.cartService = cs;
+	}
+	
+	public void setProductList(List<Product> li){
+		pList = li;
+	}
+	
+	public int initCart(){
+		this.cartId = cartService.initCart();
+		return cartId;
+	}
+	
+	public int addProduct(Product p, int qty){
+		return cartService.addProduct(cartId, p, qty);
+	}
+	public int removeProduct(Product p){
+		return cartService.removeProduct(cartId,p);
+	}
+	public int adjustQty(Product p, int newQty){
+		return cartService.adjustQty(cartId, p, newQty);
+	}
+	public int  clearCart(){
+		return cartService.clearCart(cartId);
+	}
+	public boolean checkOut(String cc){
+		return cartService.checkOut(cartId, cc);
+	}
+	
+	public int getCartValue(){
+		int val=0;
+		for (Product p : pList){
+			val = val + cartService.getProductQty(p) * cartService.getProductPrice(p) ;
+		}
+		return val;
+	}
+}

@@ -1,0 +1,34 @@
+/***
+ * 03/02/2017
+ * Kien Nguyen & Thi Nguyen
+ * SWE 437 - Software Testing and Maintenance 
+ * Using Mockito Java Mocking Tools
+ */
+public class ShoppingCart {
+	private int cartId;
+	private CartService cartService; // This is a seam. 
+	
+	// This is an enabling point 
+	public void setCartService(CartService cs){
+		this.cartService = cs;
+	}
+	
+	public ShoppingCart(){
+		this.cartId = cartService.initCart();
+	}
+	public int addProduct(Product p){
+		return cartService.addProduct(cartId, p);
+	}
+	public int removeProduct(Product p){
+		return cartService.removeProduct(cartId,p);
+	}
+	public int adjustQty(Product p, int newQty){
+		return cartService.adjustQty(cartId, p, newQty);
+	}
+	public int  clearCart(){
+		return cartService.clearCart(cartId);
+	}
+	public boolean checkOut(String cc){
+		return cartService.checkOut(cartId, cc);
+	}
+}

@@ -1,0 +1,43 @@
+/***
+ * 03/02/2017
+ * Kien Nguyen & Thi Nguyen
+ * SWE 437 - Software Testing and Maintenance 
+ * Java Mocking Tools: Mockito
+ */
+import static org.mockito.Mockito.*;
+
+/*
+ * ShoppingCartTest will test the ShoppingCart (the software component under test)
+ * which uses the CartService interface ( which is a seam).
+ * We create a mock object of CartService using mockito and test the 
+ * communication of the mock cartService with the ShoppingCart
+ */
+public class ShoppingCartTest {
+	private ShoppingCart mycart;
+	private CartService cartService;
+	
+	public void setUpTest(){
+		mycart = new ShoppingCart();
+		cartService = mock(CartService.class);
+		mycart.setCartService(cartService);
+	}
+	
+	
+	public void testAddProduct(){
+		Product p1 = new Product(1, "T-Shirt 1", 1, 1000);		
+		Product p2 = new Product(2, "T-Shirt 2", 1, 2000);		
+		Product p3 = new Product(2, "T-Shirt 3", 1, 3000);		
+		Product p4 = new Product(2, "T-Shirt 4", 1, 4000);		
+		Product p5 = new Product(2, "T-Shirt 5", 1, 5000);		
+		
+		int cartId = 11;
+		when(mycart.addProduct(p1)).thenReturn(1000);
+		when(mycart.addProduct(p2)).thenReturn(3000);
+		when(mycart.addProduct(p3)).thenReturn(6000);
+		when(mycart.removeProduct(p3)).thenReturn(3000);
+		
+		when(mycart.adjustQty(p1, 2)).thenReturn(5000);
+		when(mycart.clearCart()).thenReturn(0);
+		when(mycart.checkOut("")).thenReturn(false);
+	}
+}	
